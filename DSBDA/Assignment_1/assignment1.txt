@@ -1,0 +1,28 @@
+import pandas as pd 
+import numpy as np
+
+df = pd.read_csv('dataset_Facebook.csv',sep=";") 
+
+df.head()
+
+sub1 = df[['Page total likes', 'Type', 'Category', 'Post Month', 'Post Weekday']]
+sub1
+
+sub2 = df[['Lifetime Post reach by people who like your Page', 'Lifetime People who have liked your Page and engaged with your post']]
+sub2
+
+temp = df.iloc[10:25]
+print(temp)
+
+pd.concat([sub1,sub2])
+
+df.sort_values(['Category', 'Paid'], ascending=False)
+
+df.transpose()
+
+df_melted = sub1.melt (id_vars = None , value_vars = None , ignore_index = False )
+print(df_melted)
+
+
+df_pivoted = df_melted.pivot( columns = 'variable',values = 'value') 
+print( df_pivoted)

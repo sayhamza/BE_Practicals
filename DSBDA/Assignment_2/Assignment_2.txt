@@ -1,0 +1,76 @@
+import numpy as np
+import pandas as pd
+
+from sklearn.preprocessing import StandardScaler
+df=pd.read_csv("AirQuality.csv",sep = ';')
+df.info()
+
+df.shape # check total number of rows and columns
+
+df.isnull().sum()
+
+df['Unnamed: 15'].isnull().sum()
+df['Unnamed: 16'].isnull().sum()
+
+
+df.drop(['Unnamed: 15','Unnamed: 16'],axis = 1,inplace = True)
+
+df.shape
+
+
+df.isnull().sum()
+
+df[df.isnull().any(axis=1)]
+
+df.dropna(how = 'any', inplace = True)
+
+df[df.isnull().any(axis=1)] 
+
+column_list = df.columns.values.tolist()
+print(column_list)
+
+for column_name in column_list:
+    print ("\n", column_name)
+    
+    print ( df[column_name].value_counts(dropna = False ) )
+
+
+
+
+df.info()
+
+print(df['CO(GT)'])
+
+print( df['C6H6(GT)'])
+
+print(df['RH'])
+
+print(df['AH'])
+
+print(df['T'])
+
+
+
+j = 'CO(GT) C6H6(GT) T RH AH'.split()
+print(j) 
+df.replace(to_replace=',',value='.',regex=True,inplace=True) 
+for i in j :
+    df[i] = pd.to_numeric(df[i],errors='coerce')
+
+
+df.info()
+
+
+df.head()
+
+for col in Numerical_col:
+    df[[col]] = scaler.fit_transform(df[[col]])
+df.head()
+
+df['Date'] = pd.to_datetime(df['Date'],dayfirst=True) 
+
+df['Time'] = pd.to_datetime(df['Time'],format= '%H.%M.%S' ).dt.time
+# Series.dt.time: Returns numpy array of datetime.time objects.
+
+df.head()
+df.info()
